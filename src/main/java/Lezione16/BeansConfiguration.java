@@ -7,36 +7,62 @@ import Lezione16.enteties.Topping;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Configuration
 public class BeansConfiguration {
     @Bean
     Pizza getBase() {
-        return new Pizza(1000, 4.99, "Margherita");
+        return new Pizza(1000, 4.99, "Margherita", null);
     }
 
     @Bean
     Pizza getBismark() {
-        return new Pizza(3000, 8.50, "Bismark");
+        List<Topping> toppings = new ArrayList<>();
+        toppings.add(getPatatine());
+        toppings.add(getUovo());
+        toppings.add(getWurstel());
+        return new Pizza(3000, 8.50, "Bismark", toppings);
     }
 
     @Bean
     Pizza getBaby() {
-        return new Pizza(4000, 7.50, "Baby");
+        List<Topping> toppings = new ArrayList<>();
+        toppings.add(getPatatine());
+        toppings.add(getWurstel());
+        return new Pizza(4000, 7.50, "Baby", toppings);
     }
 
     @Bean
     Pizza getDiavola() {
-        return new Pizza(5000, 6.50, "Diavola");
+        List<Topping> toppings = new ArrayList<>();
+        toppings.add(getSalamimno());
+        return new Pizza(5000, 6.50, "Diavola", toppings);
     }
 
     @Bean
     Pizza getCoco() {
-        return new Pizza(2500, 7.00, "Cocò");
+        List<Topping> toppings = new ArrayList<>();
+        toppings.add(getUovo());
+        toppings.add(getProsciutto());
+        return new Pizza(2500, 7.00, "Cocò", toppings);
+    }
+
+    @Bean
+    Pizza grtProsciuttoEFunghi() {
+        List<Topping> toppings = new ArrayList<>();
+        toppings.add(getFunghi());
+        toppings.add(getProsciutto());
+        return new Pizza(2500, 7.00, "Cocò", toppings);
     }
 
     @Bean
     Pizza getTonnoCiplla() {
-        return new Pizza(2500, 8.00, "Tonno e cipolla");
+        List<Topping> toppings = new ArrayList<>();
+        toppings.add(getTonno());
+        toppings.add(getCipolla());
+        return new Pizza(2500, 8.00, "Tonno e cipolla", toppings);
     }
 
     @Bean
@@ -95,6 +121,21 @@ public class BeansConfiguration {
     }
 
     @Bean
-    Menu
+    Menu getMenu() {
+        List<Pizza> pizze = new ArrayList<>();
+        List<Beverage> bevande = new ArrayList<>();
+        pizze.add(getCoco());
+        pizze.add(getBase());
+        pizze.add(getBaby());
+        pizze.add(getDiavola());
+        pizze.add(getBismark());
+        pizze.add(getDiavola());
+        pizze.add(grtProsciuttoEFunghi());
+        pizze.add(getTonnoCiplla());
+        bevande.add(getWater());
+        bevande.add(getCocaCola());
+        bevande.add(getBirra());
+        return new Menu(pizze, bevande);
+    }
 
 }
