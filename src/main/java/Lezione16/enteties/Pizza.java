@@ -5,7 +5,10 @@ import lombok.Getter;
 import lombok.ToString;
 
 @ToString
-@AllArgsConstructor
 @Getter
-public class Water extends Info{
+@AllArgsConstructor
+public class Pizza {
+    private int calories;
+    private double price;
+    private String name;
 }

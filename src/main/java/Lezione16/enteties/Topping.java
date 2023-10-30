@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.ToString;
 
 @ToString
-@Getter
 @AllArgsConstructor
-public class Margherita extends Info{
+@Getter
+public class Topping {
+    private String name;
+
 }
